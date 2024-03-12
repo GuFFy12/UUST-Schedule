@@ -1,0 +1,62 @@
+[tool.poetry]
+name = "uust-schedule"
+version = "1.0.0"
+description = "Wrapper for Ufa University of Science and Technology Schedule."
+license = "MIT"
+authors = ["GuFFy12 <string-crunchy.0u@icloud.com>"]
+readme = "README.md"
+repository = "https://github.com/GuFFy12/UUST-Schedule"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+requests = "^2.31.0"
+beautifulsoup4 = "^4.12.3"
+python-dateutil = "^2.9.0.post0"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.8.0"
+types-requests = "^2.31.0.20240311"
+types-beautifulsoup4 = "^4.12.0.20240229"
+types-python-dateutil = "^2.8.19.20240311"
+ruff = "^0.3.2"
+pytest = "^8.1.1"
+pytest-cov = "^4.1.0"
+requests-mock = "^1.11.0"
+
+[tool.poetry.group.github-actions]
+optional = true
+[tool.poetry.group.github-actions.dependencies]
+pytest-github-actions-annotate-failures = "^0.2.0"
+
+[tool.mypy]
+files = ["."]
+
+[tool.ruff]
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["ALL"]
+# flake8-bandit,
+# missing-type-self, missing-type-cls, missing-return-type-special-method,
+# undocumented-magic-method, undocumented-public-init
+# ambiguous-unicode-character-string, ambiguous-unicode-character-docstring, ambiguous-unicode-character-comment
+ignore = [
+    "S",
+    "ANN101", "ANN102", "ANN204",
+    "D105", "D107",
+    "RUF001", "RUF002", "RUF003",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# pydocstyle
+"tests/*" = ["D"]
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 160
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
